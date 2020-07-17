@@ -5,5 +5,5 @@
  ### Requirements
   - Nodejs
     - version used v12.16.3
-  - nmp or yarn
+  - npm or yarn
   
