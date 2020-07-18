@@ -7,7 +7,7 @@ const getContacts = (req, res) => {
     res.json(contacts);
 };
 
-// Get For Id
+// Get of Id
 const getContact = (req, res) => {
     const contact = getConnection().get('contacts').find({id: req.params.id }).value();
     res.json(contact);
@@ -25,13 +25,14 @@ const createContatc = (req, res) => {
 }
 
 // Update
-const updateContacts = async (req, res) => {
+const updateContact = async (req, res) => {
     const result = await getConnection().get('contacts').find({id: req.params.id })
         .assign(req.body)
         .write();
     res.json(result);
 }
 
+// Delete 
 const deleteContact = (req, res) => {
     const result = getConnection().get('contacts').remove({id: req.params.id }).write();
     res.json(result);
@@ -41,6 +42,6 @@ module.exports = {
     getContacts,
     createContatc,
     getContact,
-    updateContacts,
+    updateContact,
     deleteContact
 }
