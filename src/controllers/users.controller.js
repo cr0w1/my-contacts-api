@@ -59,10 +59,17 @@ const deleteUser = (req, res) => {
     res.json(result);
 }
 
+// Get Image
+const getImage = (req, res) => {
+    const result = getConnection().get('image').find({ user_id: req.params.id });
+    res.json(result);
+}
+
 module.exports = {
     getUsers,
     getUser,
     createUser,
     updateUser,
-    deleteUser
+    deleteUser,
+    getImage
 }

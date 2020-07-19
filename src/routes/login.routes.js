@@ -3,6 +3,8 @@ const router = Router();
 
 const { verificationUser } = require('../controllers/login.controller');
 
-router.post('/auth', verificationUser);
+// Routes
+    // Checking User
+        router.post('/auth', verificationUser);
 
 module.exports = router;
