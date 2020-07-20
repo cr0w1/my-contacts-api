@@ -10,17 +10,17 @@ const getUsers = (req, res) => {
 
 // Get of Id
 const getUser = (req, res) => {
-    const user = getConnection().get('users').find({id: req.params.id});
+    const user = getConnection().get('users').find({ id: req.params.id });
     res.json(user);
 }
 
 // Create
-const createUser = async (req, res) => {
+const createUser = async(req, res) => {
     console.log(req.file);
     // PassWord Crypt on Bcryptjs
-    const password = await bcrypt.hash(req.body.password , 10);
+    const password = await bcrypt.hash(req.body.password, 10);
 
-    const date = new Date(new Date()-3600*1000*3).toISOString();
+    const date = new Date(new Date() - 3600 * 1000 * 3).toISOString();
 
     const newUser = {
         id: v4(),
@@ -28,26 +28,19 @@ const createUser = async (req, res) => {
         email: req.body.email,
         password: password,
         status: '',
+        image_name: req.file.originalname,
+        image_size: req.file.size,
+        image_key: req.file.filename,
         createAt: date,
-        
-    };
 
-    const newImage = {
-        id: v4(),
-        user_id: newUser.id,
-        name: req.file.originalname,
-        size: req.file.size,
-        key: req.file.filename,
-        createAt: date,
     };
     getConnection().get('users').push(newUser).write();
-    getConnection().get('image').push(newImage).write();
-    res.json({ 'image' : newImage , 'user' : newUser , 'result' : true} );
+    res.json({ 'user': newUser });
 }
 
 // Update
-const updateUser = async (req, res) => {
-    const result = await getConnection().get('users').find({id: req.params.id })
+const updateUser = async(req, res) => {
+    const result = await getConnection().get('users').find({ id: req.params.id })
         .assign(req.body)
         .write();
     res.json(result);
@@ -55,13 +48,7 @@ const updateUser = async (req, res) => {
 
 // Delete 
 const deleteUser = (req, res) => {
-    const result = getConnection().get('users').remove({ id: req.params.id });
-    res.json(result);
-}
-
-// Get Image
-const getImage = (req, res) => {
-    const result = getConnection().get('image').find({ user_id: req.params.id });
+    const result = getConnection().get('users').remove({ id: req.params.id }).write();
     res.json(result);
 }
 
@@ -71,5 +58,4 @@ module.exports = {
     createUser,
     updateUser,
     deleteUser,
-    getImage
 }
