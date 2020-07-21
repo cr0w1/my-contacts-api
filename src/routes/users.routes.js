@@ -9,15 +9,15 @@ const { getUsers, getUser, createUser, updateUser, deleteUser } = require('../co
 
 
 // Routes
-// Get All Route
-router.get('/users', getUsers);
-// Get one User Route
-router.get('/user/:id', getUser);
-// Create Route
-router.post('/user', multer(multerConfig).single("file"), createUser);
-// Update Route
-router.put('/user/:id', updateUser);
-// Delete Route
-router.delete('/user/:id', deleteUser);
+    // Get All Route
+        router.get('/users', getUsers);
+    // Get one User Route
+        router.get('/user/:id', getUser);
+    // Create Route
+        router.post('/user', multer().single("file"), createUser);
+    // Update Route
+        router.put('/user/:id', updateUser);
+    // Delete Route
+        router.delete('/user/:id', deleteUser);
 
 module.exports = router;

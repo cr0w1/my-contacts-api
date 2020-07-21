@@ -1,6 +1,7 @@
 const { getConnection } = require('../database');
 const { v4 } = require('uuid');
 const bcrypt = require('bcryptjs');
+const axios = require('axios');
 
 // Get All
 const getUsers = (req, res) => {
@@ -16,26 +17,45 @@ const getUser = (req, res) => {
 
 // Create
 const createUser = async(req, res) => {
-    console.log(req.file);
-    // PassWord Crypt on Bcryptjs
-    const password = await bcrypt.hash(req.body.password, 10);
+    
+    const config = {
+        method: 'POST' ,
+        url: 'https://api.imgur.com/3/image',
+        data: req.file.buffer,
+        headers: {
+            'Authorization': `Client-ID ${process.env.CLIENT_ID_IMGUR}`
+        }
+    }
 
-    const date = new Date(new Date() - 3600 * 1000 * 3).toISOString();
+    axios(config).then(function (response) {
+        const url = response.data.data.link;
+        create(url);
+    })
+    .catch(function (error) {
+        console.log(error);
+    });
 
-    const newUser = {
-        id: v4(),
-        name: req.body.name,
-        email: req.body.email,
-        password: password,
-        status: '',
-        image_name: req.file.originalname,
-        image_size: req.file.size,
-        image_key: req.file.filename,
-        createAt: date,
+    async function create(url) {
+        // PassWord Crypt on Bcryptjs
+        const password = await bcrypt.hash(req.body.password, 10);
 
-    };
-    getConnection().get('users').push(newUser).write();
-    res.json({ 'user': newUser });
+        const date = new Date(new Date() - 3600 * 1000 * 3).toISOString();
+
+        const newUser = {
+            id: v4(),
+            name: req.body.name,
+            email: req.body.email,
+            password: password,
+            status: '',
+            image_url: url,
+            createAt: date,
+
+        };
+
+        getConnection().get('users').push(newUser).write();
+        res.json({ 'user': newUser });
+    }
+    
 }
 
 // Update

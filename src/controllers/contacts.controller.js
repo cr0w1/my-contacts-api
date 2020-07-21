@@ -1,5 +1,6 @@
 const { getConnection } = require('../database');
 const { v4 } = require('uuid');
+const axios = require('axios');
 
 // Get All
 const getContacts = (req, res) => {
@@ -21,21 +22,38 @@ const getContact = (req, res) => {
 
 // Create 
 const createContatc = (req, res) => {
-
-    const date = new Date(new Date() - 3600 * 1000 * 3).toISOString();
-
-    const newContact = {
-        id: v4(),
-        user_id: req.body.user_id,
-        name: req.body.name,
-        telefone: req.body.telefone,
-        image_name: req.file.originalname,
-        image_size: req.file.size,
-        image_key: req.file.filename,
-        createAt: date,
+    
+    const config = {
+        method: 'POST' ,
+        url: 'https://api.imgur.com/3/image',
+        data: req.file.buffer,
+        headers: {
+            'Authorization': `Client-ID ${process.env.CLIENT_ID_IMGUR}`
+        }
     }
-    getConnection().get('contacts').push(newContact).write();
-    res.json({ 'Contact': newContact });
+
+    axios(config).then(function (response) {
+        const url = response.data.data.link;
+        create(url);
+    })
+    .catch(function (error) {
+        console.log(error);
+    });
+
+    async function create(url) {
+        const date = new Date(new Date() - 3600 * 1000 * 3).toISOString();
+
+        const newContact = {
+            id: v4(),
+            user_id: req.body.user_id,
+            name: req.body.name,
+            telefone: req.body.telefone,
+            image_url: url,
+            createAt: date,
+        }
+        getConnection().get('contacts').push(newContact).write();
+        res.json({ 'Contact': newContact });
+    }
 }
 
 // Update
