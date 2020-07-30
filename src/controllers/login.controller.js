@@ -20,7 +20,7 @@ const verificationUser = async(req, res) => {
         });
 
     res.json({
-        data: user,
+        user: user,
         success: true
     });
 }
