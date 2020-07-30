@@ -17,45 +17,47 @@ const getUser = (req, res) => {
 
 // Create
 const createUser = async(req, res) => {
+
+    // console.log(req.file);
     
-    const config = {
-        method: 'POST' ,
-        url: 'https://api.imgur.com/3/image',
-        data: req.file.buffer,
-        headers: {
-            'Authorization': `Client-ID ${process.env.CLIENT_ID_IMGUR}`
-        }
-    }
+    // const config = {
+    //     method: 'POST' ,
+    //     url: 'https://api.imgur.com/3/image',
+    //     data: req.file.buffer,
+    //     headers: {
+    //         'Authorization': `Client-ID ${process.env.CLIENT_ID_IMGUR}`
+    //     }
+    // }
 
-    axios(config).then(function (response) {
-        const url = response.data.data.link;
-        create(url);
-    })
-    .catch(function (error) {
-        console.log(error);
-    });
+    // axios(config).then(function (response) {
+    //     const url = response.data.data.link;
+    //     create(url);
+    // })
+    // .catch(function (error) {
+    //     console.log(error);
+    // });
 
-    async function create(url) {
-        // PassWord Crypt on Bcryptjs
-        const password = await bcrypt.hash(req.body.password, 10);
+    // async function create(url) {
+    //     // PassWord Crypt on Bcryptjs
+    //     const password = await bcrypt.hash(req.body.password, 10);
 
-        const date = new Date(new Date() - 3600 * 1000 * 3).toISOString();
+    //     const date = new Date(new Date() - 3600 * 1000 * 3).toISOString();
 
-        const newUser = {
-            id: v4(),
-            name: req.body.name,
-            email: req.body.email,
-            password: password,
-            status: '',
-            image_url: url,
-            createAt: date,
+    //     const newUser = {
+    //         id: v4(),
+    //         name: req.body.name,
+    //         email: req.body.email,
+    //         password: password,
+    //         status: '',
+    //         image_url: url,
+    //         createAt: date,
 
-        };
+    //     };
 
-        getConnection().get('users').push(newUser).write();
-        res.json({ 'user': newUser });
-    }
-    
+    //     getConnection().get('users').push(newUser).write();
+    //     res.json({ 'user': newUser });
+    // }
+    res.json(req);
 }
 
 // Update
