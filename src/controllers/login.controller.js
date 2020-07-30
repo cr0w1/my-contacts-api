@@ -7,11 +7,11 @@ const verificationUser = async(req, res) => {
     const user = getConnection().get('users').find({ email: req.body.email }).value();
 
     if (!user)
-        return res.status(400).send({ error: 'User not found' });
+        return res.json({ error: 'usuario não encontrado.' });
 
     // PassWord Compare on Bcryptjs
     if (!await bcrypt.compare(req.body.password, user.password))
-        return res.status(400).send({ error: 'Invalid password' });
+        return res.json({ error: 'Senha inválida.' });
 
     res.json(user);
 }

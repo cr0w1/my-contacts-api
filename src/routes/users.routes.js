@@ -14,7 +14,8 @@ const { getUsers, getUser, createUser, updateUser, deleteUser } = require('../co
     // Get one User Route
         router.get('/user/:id', getUser);
     // Create Route
-        router.post('/user', multer().single("file"), createUser);
+        // router.post('/user', multer().single("file"), createUser);
+        router.post('/user', createUser);
     // Update Route
         router.put('/user/:id', updateUser);
     // Delete Route
