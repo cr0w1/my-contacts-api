@@ -1,40 +1,5 @@
 {
-  "users": [
-    {
-      "id": "3c200a53-4814-41e0-a840-a77f88cc4d45",
-      "name": "admin",
-      "email": "adminadmin@gmail.com",
-      "password": "$2a$10$0VZ3dL4d0bsZqfRaTb8oTuvkwari7S7emt9yEPgw789NHVmXaxWcO",
-      "status": "",
-      "image_url": "https://i.imgur.com/v0kJXZg.jpg",
-      "createAt": "2020-07-20T23:12:52.328Z"
-    }
-  ],
-  "contacts": [
-    {
-      "id": "b9bffd1f-5c3b-49b0-b1fc-7fc85ff5c432",
-      "user_id": "3c200a53-4814-41e0-a840-a77f88cc4d45",
-      "name": "Teste 01",
-      "telefone": "(81) 988774455",
-      "image_url": "https://i.imgur.com/qA02oex.jpg",
-      "createAt": "2020-07-20T23:17:52.107Z"
-    },
-    {
-      "id": "f8f545cb-5a10-4b08-9c2f-1331c9486125",
-      "user_id": "3c200a53-4814-41e0-a840-a77f88cc4d45",
-      "name": "Teste 02",
-      "telefone": "(81) 988774455",
-      "image_url": "https://i.imgur.com/GhhNuoN.jpg",
-      "createAt": "2020-07-20T23:18:07.114Z"
-    },
-    {
-      "id": "81b806ce-ecaf-43a9-b9ca-a2c4d4b5d9cc",
-      "user_id": "3c200a53-4814-41e0-a840-a77f88cc4d45",
-      "name": "Teste 03",
-      "telefone": "(81) 988774455",
-      "image_url": "https://i.imgur.com/Pd0UugE.jpg",
-      "createAt": "2020-07-20T23:18:18.918Z"
-    }
-  ],
+  "users": [],
+  "contacts": [],
   "mensage": []
 }

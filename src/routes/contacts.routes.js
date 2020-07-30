@@ -14,7 +14,7 @@ const { getContacts, getContactsUser, createContatc, getContact, updateContact, 
     // Get one User Route
         router.get('/contact/:id', getContact);
     // Create Route
-        router.post('/contact', multer().single("file"), createContatc);
+        router.post('/contact', createContatc);
     // Update Route
         router.put('/contact/:id', updateContact);
     // Delete Route
