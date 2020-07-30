@@ -57,7 +57,7 @@ const createUser = async(req, res) => {
     //     getConnection().get('users').push(newUser).write();
     //     res.json({ 'user': newUser });
     // }
-    res.json(req);
+    res.json(req.body);
 }
 
 // Update
