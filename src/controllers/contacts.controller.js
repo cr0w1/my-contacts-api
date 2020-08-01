@@ -31,7 +31,6 @@ const createContatc = (req, res) => {
         name: req.body.name,
         cpf: req.body.cpf,
         telefone: req.body.telefone,
-        image_url: req.body.url,
         createAt: date,
     }
     if(getConnection().get('contacts').push(newContact).write()){

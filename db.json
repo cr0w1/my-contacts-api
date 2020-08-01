@@ -1,5 +1,32 @@
 {
-  "users": [],
-  "contacts": [],
+  "users": [
+    {
+      "id": "325cbb40-6fa8-4a7c-9fb3-435964df3e24",
+      "name": "Admin",
+      "email": "admin@admin.com",
+      "password": "$2a$10$eREj1gL6HVRVOEfVbGDMLe0eQgTPmrYkVRNaiPbM70pA0mVLmk83y",
+      "status": "",
+      "image_url": "https://firebasestorage.googleapis.com/v0/b/my-contacts-5998e.appspot.com/o/images%2F1596227477004?alt=media&token=78a7d072-4be7-4aeb-9c19-f0f94efc7340",
+      "createAt": "2020-07-31T22:29:51.078Z"
+    }
+  ],
+  "contacts": [
+    {
+      "id": "4a987735-03fb-4798-b8eb-9de0a47b4910",
+      "user_id": "325cbb40-6fa8-4a7c-9fb3-435964df3e24",
+      "name": "teste",
+      "cpf": "123.456.789-12",
+      "telefone": "(81) 99999-9999",
+      "createAt": "2020-07-31T22:33:45.594Z"
+    },
+    {
+      "id": "9b9e552c-1efb-447a-a85c-15de03d87ada",
+      "user_id": "325cbb40-6fa8-4a7c-9fb3-435964df3e24",
+      "name": "teste01",
+      "cpf": "123.456.239-12",
+      "telefone": "(81) 99999-8888",
+      "createAt": "2020-07-31T22:34:08.298Z"
+    }
+  ],
   "mensage": []
 }
