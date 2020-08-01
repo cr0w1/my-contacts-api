@@ -6,7 +6,7 @@ let db;
 async function createConnection() {
     const adapter = new FileAsync('db.json');
     db = await low(adapter);
-    db.defaults({ users: [], contacts: [], mensage: [] }).write();
+    db.defaults({ users: [], contacts: []}).write();
 }
 
 const getConnection = () => db;

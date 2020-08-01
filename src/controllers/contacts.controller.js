@@ -35,11 +35,11 @@ const createContatc = (req, res) => {
     }
     if(getConnection().get('contacts').push(newContact).write()){
         res.json({ 
-            success: true
+            'success': true
         });
     }else{
         res.json({
-            success : false
+            'success' : false
         })
     }
     
@@ -47,16 +47,20 @@ const createContatc = (req, res) => {
 
 // Update
 const updateContact = async(req, res) => {
-    const result = await getConnection().get('contacts').find({ id: req.params.id })
+    await getConnection().get('contacts').find({ id: req.params.id })
         .assign(req.body)
         .write();
-    res.json(result);
+    res.json({ 
+        'success': true
+    });
 }
 
 // Delete 
 const deleteContact = (req, res) => {
-    const result = getConnection().get('contacts').remove({ id: req.params.id }).write();
-    res.json(result);
+    getConnection().get('contacts').remove({ id: req.params.id }).write();
+    res.json({ 
+        'success': true
+    });
 }
 
 module.exports = {

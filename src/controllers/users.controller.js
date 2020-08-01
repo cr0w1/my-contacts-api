@@ -36,7 +36,6 @@ const createUser = async(req, res) => {
 
     if(getConnection().get('users').push(newUser).write()){
         res.json({ 
-            'user': newUser ,
             'success': true
         });
     }else{
@@ -49,16 +48,20 @@ const createUser = async(req, res) => {
 
 // Update
 const updateUser = async(req, res) => {
-    const result = await getConnection().get('users').find({ id: req.params.id })
+    await getConnection().get('users').find({ id: req.params.id })
         .assign(req.body)
         .write();
-    res.json(result);
+    res.json({ 
+        'success': true
+    });
 }
 
 // Delete 
 const deleteUser = (req, res) => {
-    const result = getConnection().get('users').remove({ id: req.params.id }).write();
-    res.json(result);
+    getConnection().get('users').remove({ id: req.params.id }).write();
+    res.json({ 
+        'success': true
+    });
 }
 
 module.exports = {
